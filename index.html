@@ -4,9 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EV Recharge — The Uptime Infrastructure for EV Fleets</title>
+    <title>EV Recharge — Mobile EV Fleet Charging | Grid-Independent, 100% Renewable</title>
+    <meta name="description" content="Mobile, grid-independent DC charging for EV fleets. Deployed at your depot in 5 days. Zero capex, 100% renewable. Trusted by Euler Motors, ZEVO, BigBasket.">
+    <meta name="keywords" content="EV fleet charging, mobile EV charging India, fleet charging infrastructure, grid-independent charging, EV Recharge">
+    <link rel="canonical" href="https://www.evrecharge.org/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="EV Recharge — The Uptime Infrastructure for EV Fleets">
+    <meta property="og:description" content="Mobile DC charging at your depot. SLA-backed uptime. Zero capex. Trusted by India's leading fleet operators.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.evrecharge.org/">
+    <meta property="og:image" content="https://www.evrecharge.org/og-image.jpg">
+    <meta property="og:site_name" content="EV Recharge">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EV Recharge — Mobile EV Fleet Charging">
+    <meta name="twitter:description" content="Grid-independent, 100% renewable charging deployed at your fleet's location in 5 days.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A5C38'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-size='12' font-weight='800' fill='white'>EV</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
         rel="stylesheet">
     <style>
         /* ═══════════════════════════════════════════════════
@@ -19,6 +40,18 @@
    Font: Plus Jakarta Sans — humanist, B2B-grade, B2C-ready.
    ═══════════════════════════════════════════════════ */
 
+        /* ── CLASS REFERENCE ──
+           .rv = reveal (scroll)    | .bp = btn-primary      | .bs = btn-secondary
+           .bg-w = btn-ghost-white  | .nl = nav-logo         | .nm = nav-mark
+           .nlinks = nav-links      | .hs = hero-stat        | .pc = pain-card
+           .sp = spec-panel         | .pi = product-image    | .fi-r = feature-row
+           .op-card = operator-card | .pc2 = proof-chip      | .sb = stat-bar-item
+           .mq = media-quote        | .uc = use-case         | .vss = vs-step
+           .cv = conversion         | .fcard = form-card     | .fstep = form-step
+           .tt = type-tile          | .fif = form-input-field| .tcard = team-card
+           .fc = footer-column      | .fg3 = footer-grid     | .fbot = footer-bottom
+        ── */
+
         :root {
             --g: #1A5C38;
             --g1: #155030;
@@ -28,8 +61,6 @@
             --dk: #07090C;
             --dk2: #0E1520;
             --dk3: #162030;
-            --db: rgba(255, 255, 255, .07);
-            --dbl: rgba(255, 255, 255, .12);
             --dt: #F0F4F2;
             --dm: rgba(240, 244, 242, .52);
             --w: #FFFFFF;
@@ -98,6 +129,36 @@
         .rv.in {
             opacity: 1;
             transform: none;
+        }
+
+        /* ── KICKER (base eyebrow label) ── */
+        .kicker {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .kicker--pill {
+            color: var(--gt);
+            background: var(--g2);
+            border: 1px solid var(--g3);
+            border-radius: 100px;
+            padding: 4px 14px;
+            display: inline-block;
+        }
+
+        .kicker--muted {
+            color: var(--k4);
+        }
+
+        .kicker--dark {
+            color: rgba(255, 255, 255, .28);
+        }
+
+        .kicker--glow {
+            color: rgba(74, 222, 128, .6);
         }
 
         /* ── BUTTONS ── */
@@ -263,6 +324,153 @@
             outline: none;
         }
 
+        /* ═══ MOBILE MENU ═══ */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--k);
+            margin: 4px 0;
+            border-radius: 2px;
+            transition: transform .25s, opacity .2s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(3px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(3px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, .98);
+            backdrop-filter: blur(20px);
+            z-index: 899;
+            padding: 24px 6vw;
+            flex-direction: column;
+            gap: 6px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--k);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--k5);
+            display: block;
+        }
+
+        .mobile-menu a:last-of-type {
+            border-bottom: none;
+        }
+
+        .mobile-menu .bp {
+            margin-top: 16px;
+            justify-content: center;
+        }
+
+        /* ── TEAM SECTION CLASSES ── */
+        .team-kicker {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--k4);
+            margin-bottom: 6px;
+        }
+
+        .team-h {
+            font-size: clamp(20px, 2.4vw, 30px);
+            font-weight: 800;
+            color: var(--k);
+            letter-spacing: -.025em;
+            margin-bottom: 2px;
+        }
+
+        .team-sub {
+            font-size: 14px;
+            color: var(--k3);
+            margin-bottom: 0;
+        }
+
+        .team-advisors {
+            margin-top: 12px;
+        }
+
+        .team-advisors-label {
+            font-size: 10.5px;
+            color: var(--k4);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 8px;
+        }
+
+        /* ── WHATSAPP WIDGET ── */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+            z-index: 1000;
+            transition: transform .2s, box-shadow .2s;
+            cursor: pointer;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, .3);
+        }
+
+        .wa-float::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #25D366;
+            opacity: 0;
+            animation: wa-pulse 2s infinite;
+        }
+
+        @keyframes wa-pulse {
+            0% { transform: scale(1); opacity: .8; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
         /* ═══ HERO ═══ */
         #hero {
             min-height: 100vh;
@@ -298,6 +506,7 @@
             inset: 0;
             pointer-events: none;
             opacity: .1;
+            will-change: transform;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             background-size: 200px;
         }
@@ -1984,6 +2193,12 @@
             .persona-switcher {
                 display: none;
             }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
         }
 
         @media(max-width:560px) {
@@ -2006,6 +2221,12 @@
                 border-bottom: 1px solid var(--k5);
             }
 
+            .hs:last-child,
+            .sp:last-child,
+            .sb:last-child {
+                border-bottom: none;
+            }
+
             .uc-nav {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -2021,6 +2242,12 @@
 
             .upr-stats {
                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:380px) {
+            .upr-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -2051,11 +2278,24 @@
                 </select>
             </div>
             <a href="#conversion" class="bp" style="padding:9px 18px;font-size:13px">See your fleet plan</a>
+            <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#product" onclick="closeMobileMenu()">Product</a>
+        <a href="#usecases" onclick="closeMobileMenu()">Industries</a>
+        <a href="#proof" onclick="closeMobileMenu()">Partners</a>
+        <a href="#team" onclick="closeMobileMenu()">Team</a>
+        <a href="#conversion" class="bp" onclick="closeMobileMenu()">See your fleet plan</a>
+    </div>
+
     <!-- ═══ HERO ═══ -->
     <section id="hero">
+        <!-- REPLACE_WITH_DRIVE_ASSET: Hero Background (Recommended: 1800x1200, Night/Evening shot of fleet depot) -->
         <div class="h-img"></div>
         <div class="h-grain"></div>
         <div class="h-scan"></div>
@@ -2135,7 +2375,7 @@
         <div class="prod-top">
             <div>
                 <div class="p-kicker">EVR-MCI Series · TRL-7 Validated</div>
-                <h2 class="p-h">500kW. 5 days.<br><span class="g">Zero grid dependency.</span></h2>
+                <h2 class="p-h">120kW DC. 5 days.<br><span class="g">Zero grid dependency.</span></h2>
             </div>
             <p class="p-sub">IoT-enabled mobile DC ultra-fast charging with AI-driven telematics. Deployed at your
                 fleet's exact location — no permits, no civil work, no grid connection required.</p>
@@ -2162,18 +2402,21 @@
 
         <div class="prod-imgs rv">
             <div class="pi main">
+                <!-- REPLACE_WITH_DRIVE_ASSET: Primary Product Unit Photo (1200x800) -->
                 <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&auto=format&fit=crop&q=85"
                     alt="EVR-MCI Series mobile charging unit at fleet depot">
                 <span class="pi-lbl">EVR-MCI · Live Deployment</span>
             </div>
             <div class="pi sm">
+                <!-- REPLACE_WITH_DRIVE_ASSET: Secondary Unit Photo (Small) -->
                 <img src="https://images.unsplash.com/photo-1617704548623-340376564e68?w=400&auto=format&fit=crop&q=80"
-                    alt="Solar charging hub" style="min-height:180px">
+                    alt="Solar charging hub" style="min-height:180px" loading="lazy">
                 <span class="pi-lbl">Solar Hub</span>
             </div>
             <div class="pi sm">
+                <!-- REPLACE_WITH_DRIVE_ASSET: Operational Proof Photo (Small) -->
                 <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&auto=format&fit=crop&q=80"
-                    alt="3WL last-mile fleet" style="min-height:180px">
+                    alt="3WL last-mile fleet" style="min-height:180px" loading="lazy">
                 <span class="pi-lbl">3WL · Last Mile</span>
             </div>
         </div>
@@ -2182,7 +2425,7 @@
             <div class="fi-r">
                 <div class="fi-ic">⚡</div>
                 <div>
-                    <h4>Up to 500kW DC — direct battery discharge</h4>
+                    <h4>Up to 120kW DC — direct battery discharge</h4>
                     <p>No AC/DC conversion loss. No transformer lag. A 12kWh commercial vehicle charges in 15–20 minutes
                         — the same window as an ICE fuel stop.</p>
                 </div>
@@ -2695,30 +2938,41 @@
                     <button class="f-back show" id="fbk" onclick="backF()">← Change selection</button>
                     <div class="fstep-h" id="fs2h">About your fleet</div>
                     <div class="fstep-s" id="fs2s">Four fields. We'll do the rest.</div>
-                    <div class="fg">
-                        <div class="fif"><label class="fl">Name</label><input type="text" placeholder="Rahul Sharma">
+                    <form id="leadForm" action="https://script.google.com/macros/s/AKfycbxni7t-xMJE4UGHoMxAbaEnHs_GSrFG0KxbCZhFVYVCHqQnNyFpIvmE0qo26j6LRQb_/exec" method="POST">
+                        <input type="hidden" name="persona_type" id="personaType" value="">
+                        <div class="fg">
+                            <div class="fif">
+                                <label class="fl" for="fname">Name</label>
+                                <input type="text" name="name" id="fname" placeholder="Rahul Sharma" required aria-label="Your full name">
+                            </div>
+                            <div class="fif">
+                                <label class="fl" for="fcompany">Company</label>
+                                <input type="text" name="company" id="fcompany" placeholder="FleetCo India" required aria-label="Company name">
+                            </div>
+                            <div class="fif">
+                                <label class="fl" for="fss">Fleet Size</label>
+                                <select id="fss" name="fleet_size" onchange="cp()" required aria-label="Fleet size">
+                                    <option value="">Select size</option>
+                                    <option value="lt20">Under 20 vehicles</option>
+                                    <option value="20-50">20–50 vehicles</option>
+                                    <option value="50-200">50–200 vehicles</option>
+                                    <option value="200-500">200–500 vehicles</option>
+                                    <option value="gt500">500+ vehicles</option>
+                                </select>
+                            </div>
+                            <div class="fif">
+                                <label class="fl" for="femail">Work Email</label>
+                                <input type="email" name="email" id="femail" placeholder="you@company.com" required aria-label="Work email">
+                            </div>
+                            <div class="fif full">
+                                <label class="fl" for="fcity">City / Region</label>
+                                <input type="text" name="city" id="fcity" placeholder="Delhi NCR / Mumbai / Bangalore" required aria-label="City or region">
+                            </div>
                         </div>
-                        <div class="fif"><label class="fl">Company</label><input type="text"
-                                placeholder="FleetCo India"></div>
-                        <div class="fif">
-                            <label class="fl">Fleet Size</label>
-                            <select id="fss" onchange="cp()">
-                                <option value="">Select size</option>
-                                <option value="lt20">Under 20 vehicles</option>
-                                <option value="20-50">20–50 vehicles</option>
-                                <option value="50-200">50–200 vehicles</option>
-                                <option value="200-500">200–500 vehicles</option>
-                                <option value="gt500">500+ vehicles</option>
-                            </select>
-                        </div>
-                        <div class="fif"><label class="fl">Work Email</label><input type="email"
-                                placeholder="you@company.com"></div>
-                        <div class="fif full"><label class="fl">City / Region</label><input type="text"
-                                placeholder="Delhi NCR / Mumbai / Bangalore"></div>
-                    </div>
-                    <div class="prio-n" id="pn">Your fleet qualifies for priority onboarding — our team will reach out
-                        within 2 hours.</div>
-                    <button class="fsub" id="fsub" onclick="sf()">Build my fleet's uptime plan →</button>
+                        <div class="prio-n" id="pn">Your fleet qualifies for priority onboarding — our team will reach out
+                            within 2 hours.</div>
+                        <button type="submit" class="fsub" id="fsub">Build my fleet's uptime plan →</button>
+                    </form>
                     <p class="fnote">Arpit or Dewansh responds personally within 4 hours. No generic pitch decks.</p>
                 </div>
             </div>
@@ -2727,14 +2981,9 @@
 
     <!-- ═══ TEAM ═══ -->
     <section id="team" class="rv">
-        <p
-            style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k4);margin-bottom:6px">
-            Leadership</p>
-        <h2
-            style="font-size:clamp(20px,2.4vw,30px);font-weight:800;color:var(--k);letter-spacing:-.025em;margin-bottom:2px">
-            Built by operators, for operators.</h2>
-        <p style="font-size:14px;color:var(--k3);margin-bottom:0">The founding team combines cleantech, fleet
-            operations, and IIT Delhi innovation experience.</p>
+        <p class="team-kicker">Leadership</p>
+        <h2 class="team-h">Built by operators, for operators.</h2>
+        <p class="team-sub">The founding team combines cleantech, fleet operations, and IIT Delhi innovation experience.</p>
         <div class="team-strip">
             <div class="tcard">
                 <div class="tav avg">AS</div>
@@ -2761,10 +3010,8 @@
                 </div>
             </div>
         </div>
-        <div style="margin-top:12px">
-            <p
-                style="font-size:10.5px;color:var(--k4);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">
-                Advisors</p>
+        <div class="team-advisors">
+            <p class="team-advisors-label">Advisors</p>
             <div class="adv-chips">
                 <div class="ac"><span>Utkarsh K Gupta</span> · Senior Project Scientist, IIT Delhi</div>
                 <div class="ac"><span>Nilay Sule</span> · Ex-Director Ops, Simpl · Ex-Sr. Manager, Swiggy</div>
@@ -2809,7 +3056,7 @@
         </div>
         <div class="fbot">
             <div>
-                <div>© 2024 Varnika Energy Private Limited (EV Recharge). All rights reserved.</div>
+                <div>© 2024–2026 Varnika Energy Private Limited (EV Recharge). All rights reserved.</div>
                 <div class="fcin">WorkFlo Mauryansh Elanza, Ahmedabad, Gujarat 380015 · www.evrecharge.org</div>
             </div>
             <div style="display:flex;gap:14px"><a href="#"
@@ -2818,17 +3065,46 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Floating Widget -->
+    <!-- REPLACE_WITH_REAL_NUMBER: Replace 910000000000 with your actual support number -->
+    <a href="https://wa.me/910000000000?text=Hi%20EV%20Recharge%20team,%20I'm%20interested%20in%20learning%20more%20about%20your%20uptime%20infrastructure." 
+       class="wa-float" target="_blank" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
     <script>
-        /* Nav scroll */
+        /* Nav scroll shadow */
         window.addEventListener('scroll', () => {
-            document.getElementById('nav').classList.toggle('s', window.scrollY > 6);
+            const nav = document.getElementById('nav');
+            if (nav) nav.classList.toggle('s', window.scrollY > 6);
         }, { passive: true });
 
-        /* Reveal */
-        const io = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in') }) }, { threshold: .06 });
+        /* Mobile Menu */
+        function toggleMobileMenu() {
+            const h = document.getElementById('hamburger');
+            const m = document.getElementById('mobileMenu');
+            h.classList.toggle('open');
+            m.classList.toggle('open');
+            document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const h = document.getElementById('hamburger');
+            const m = document.getElementById('mobileMenu');
+            h.classList.remove('open');
+            m.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        /* Reveal on scroll */
+        const io = new IntersectionObserver(e => {
+            e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in') })
+        }, { threshold: .06 });
         document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-        /* Hero counter */
+        /* Hero counter animation */
         function countUp(id, target, dur) {
             const el = document.getElementById(id); if (!el) return;
             let s = null;
@@ -2839,18 +3115,40 @@
         }
         setTimeout(() => countUp('cnt', 250, 1300), 400);
 
-        /* Spec count-up */
+        /* Product specs count-up (triggered on scroll) */
         let specDone = false;
-        const sio = new IntersectionObserver(e => { if (e[0].isIntersecting && !specDone) { specDone = true; countUp('sv1', 120, 1100); countUp('sv2', 24, 900); } }, { threshold: .4 });
+        const sio = new IntersectionObserver(e => {
+            if (e[0].isIntersecting && !specDone) {
+                specDone = true;
+                countUp('sv1', 120, 1100);
+                countUp('sv2', 24, 900);
+            }
+        }, { threshold: .4 });
         const ss = document.querySelector('.spec-strip'); if (ss) sio.observe(ss);
 
-        /* Media quote rotation */
+        /* Media quote rotation (viewport-aware) */
         const mqs = ['mq0', 'mq1', 'mq2', 'mq3']; let mi = 0;
-        setInterval(() => {
-            document.getElementById(mqs[mi]).classList.remove('on');
-            mi = (mi + 1) % mqs.length;
-            document.getElementById(mqs[mi]).classList.add('on');
-        }, 4500);
+        let miInterval = null;
+
+        function startMediaRotation() {
+            if (miInterval) return;
+            miInterval = setInterval(() => {
+                document.getElementById(mqs[mi]).classList.remove('on');
+                mi = (mi + 1) % mqs.length;
+                document.getElementById(mqs[mi]).classList.add('on');
+            }, 4500);
+        }
+
+        function stopMediaRotation() {
+            clearInterval(miInterval);
+            miInterval = null;
+        }
+
+        const mqo = new IntersectionObserver(e => {
+            if (e[0].isIntersecting) startMediaRotation();
+            else stopMediaRotation();
+        }, { threshold: 0.1 });
+        const mqw = document.querySelector('.mq-wrap'); if (mqw) mqo.observe(mqw);
 
         /* Persona switcher */
         const personas = {
@@ -2859,6 +3157,7 @@
             '3pl': { h: 'New city. New warehouse.<br><span class="green">Charging live in 5 days.</span>', s: 'Scale your fleet without waiting on infra. Mobile energy deploys as fast as you win new contracts. Zero capex, zero civil work.' },
             lease: { h: 'Your vehicle lease.<br><span class="green">Plus the energy to run it.</span>', s: 'Bundle charging with every lease. Turn your biggest churn driver into your strongest retention lever.' }
         };
+
         function switchPersona(v) {
             const p = personas[v] || personas.fleet;
             const h = document.getElementById('hero-headline');
@@ -2869,6 +3168,12 @@
                 h.style.transition = 'opacity .35s'; s.style.transition = 'opacity .35s';
                 h.style.opacity = '1'; s.style.opacity = '1';
             }, 200);
+
+            // Sync with form hidden input if selected from nav dropdown
+            const pMap = { fleet: 'Fleet Operator', qc: 'Quick Commerce', '3pl': '3PL / Logistics', lease: 'EV Leasing' };
+            const pt = document.getElementById('personaType');
+            if (pt) pt.value = pMap[v] || v;
+
             // Also switch use case tab
             const ucMap = { fleet: 'lm', qc: 'qc', '3pl': 'lg', lease: 'el' };
             const btn = document.querySelector(`.uc-btn[onclick*="${ucMap[v]}"]`);
@@ -2879,16 +3184,21 @@
         function showUC(id, btn) {
             document.querySelectorAll('.uc-panel').forEach(p => p.classList.remove('on'));
             document.querySelectorAll('.uc-btn').forEach(b => b.classList.remove('on'));
-            document.getElementById('ucp-' + id).classList.add('on');
-            btn.classList.add('on');
+            const p = document.getElementById('ucp-' + id);
+            if (p) p.classList.add('on');
+            if (btn) btn.classList.add('on');
         }
 
-        /* Form — two step */
+        /* Form — two step logic and submission */
         let selType = '';
         function selectT(type, label, tile) {
             selType = type;
+            const pt = document.getElementById('personaType');
+            if (pt) pt.value = label || type;
+
             document.querySelectorAll('.tt').forEach(t => t.classList.remove('sel'));
-            tile.classList.add('sel');
+            if (tile) tile.classList.add('sel');
+
             const labels = {
                 'Fleet Operator': 'About your fleet operations',
                 'EV Leasing': 'About your leasing business',
@@ -2901,6 +3211,7 @@
                 'Investor': 'Four fields. Our founders will reach out within 4 hours.',
                 'Other': 'Four fields. We\'ll connect the right person on our team.'
             };
+
             setTimeout(() => {
                 document.getElementById('fs1').classList.remove('on');
                 document.getElementById('fs2').classList.add('on');
@@ -2910,18 +3221,60 @@
                 sub.textContent = type === 'Investor' ? 'Request a founder conversation →' : 'Build my fleet\'s uptime plan →';
             }, 180);
         }
+
         function backF() {
             document.getElementById('fs2').classList.remove('on');
             document.getElementById('fs1').classList.add('on');
         }
+
         function cp() {
             const fs = document.getElementById('fss').value;
-            document.getElementById('pn').style.display = ['50-200', '200-500', 'gt500'].includes(fs) ? 'block' : 'none';
+            const pn = document.getElementById('pn');
+            if (pn) pn.style.display = ['50-200', '200-500', 'gt500'].includes(fs) ? 'block' : 'none';
         }
-        function sf() {
-            const b = document.getElementById('fsub');
-            b.textContent = '✓ Received — Arpit or Dewansh will be in touch.';
-            b.style.background = '#5B21B6'; b.disabled = true;
+
+        /* Form Submission with Validation and Formspree support */
+        const form = document.getElementById('leadForm');
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                // Prevent default submission to handle validation/ui
+                e.preventDefault();
+                const btn = document.getElementById('fsub');
+                const originalText = btn.textContent;
+
+                // Basic validation check (redundant but safe)
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+
+                // UI feedback
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+
+                // Submit to Google Sheets via Apps Script Bridge
+                const formData = new FormData(form);
+                const params = new URLSearchParams();
+                formData.forEach((value, key) => params.append(key, value));
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: params,
+                    mode: 'no-cors' // Use no-cors for simple Google Apps Script redirects
+                }).then(() => {
+                    // Since no-cors doesn't return response.ok, we assume success if it doesn't catch
+                    btn.textContent = '✓ Received — Arpit or Dewansh will be in touch.';
+                    btn.style.background = '#155030';
+                    form.reset();
+                }).catch(error => {
+                    btn.textContent = 'Error. Try arpit@evrecharge.org';
+                    btn.style.background = '#dc2626';
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.disabled = false;
+                    }, 4000);
+                });
+            });
         }
     </script>
 </body>
