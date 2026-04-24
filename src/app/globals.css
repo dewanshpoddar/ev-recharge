@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0B0F14;
+}
+
+@theme {
+  --color-evr-green: #1A5C38;
+  --color-evr-green-light: #4ADE80;
+  --color-evr-dark: #07090C;
+  --color-evr-gray: #64748B;
+  --color-evr-border: #E2E8F0;
+  --color-evr-bg: #F8FAF9;
+  --font-jakarta: var(--font-jakarta);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #07090C;
+    --foreground: #F7F8F9;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), sans-serif;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
