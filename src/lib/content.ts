@@ -26,21 +26,21 @@ export const HERO_STATS = [
 export const PAIN_CARDS = [
   {
     num: "01",
-    label: "Last-Mile Depot",
-    quote: "Vehicle is fine. Charging breaks the day.",
-    desc: "6:47 AM. 12 riders at 3 charging slots. Dispatch planner is hand-allocating bikes by SOC, not by route. Peak window opens in 13 minutes.",
+    label: "Fleet Operations",
+    quote: "The charging queue doesn't care about your peak window.",
+    desc: "6:47 AM. 12 riders at 3 charging slots. Dispatch planners are hand-allocating bikes by SOC, not by route. Peak delivery windows are lost to static wires.",
   },
   {
     num: "02",
-    label: "Quick Commerce",
-    quote: "Charger pe line lagi hai.",
-    desc: "Orders spike 40% in 11 minutes. 8 bikes below 20%. All at a public charger 2 km away. Margin burning in real-time.",
+    label: "Vehicle Leasing & OEMs",
+    quote: "Asset utilization is capped by charging accessibility.",
+    desc: "Your leased fleet is only profitable when moving. EV Recharge bundles mobile DC energy with the asset, ensuring high-intensity utilization without requiring driver-owned charging.",
   },
   {
     num: "03",
-    label: "Expansion Lead",
-    quote: "Grid upgrades take 6 months.",
-    desc: "You have the demand. You have the fleet. But the transformer upgrade is stuck in permits. Expansion is stalled by static wires.",
+    label: "Infrastructure Expansion",
+    quote: "Grid upgrades take 6 months. We take 5 days.",
+    desc: "You have the demand and the fleet, but the transformer upgrade is stuck in permits. EV Recharge deploys grid-independent micro-loops that scale with your growth, not the grid.",
   },
 ] as const;
 

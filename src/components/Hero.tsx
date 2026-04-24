@@ -41,8 +41,7 @@ export const Hero = () => {
           variants={fadeUpHero}
           className="max-w-[600px] text-[clamp(16px,2vw,20px)] font-medium text-evr-gray leading-relaxed mb-10"
         >
-          Mobile, grid-independent DC charging — deployed at your depot, warehouse, or hub. 
-          SLA-backed uptime from day one.
+          Grid-independent DC charging for depot operations, vehicle leasing fleets, and rapid infrastructure expansion. SLA-backed uptime deployed in 5 days.
         </motion.p>
 
         <motion.div variants={fadeUpHero} className="flex flex-wrap gap-4 mb-20">
