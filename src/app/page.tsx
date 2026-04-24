@@ -2,6 +2,7 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { PainMoment } from "@/components/PainMoment";
 import { BentoProduct } from "@/components/BentoProduct";
+import { GlobalComparison } from "@/components/GlobalComparison";
 import { OperationalProof } from "@/components/OperationalProof";
 import { ESGSection } from "@/components/ESGSection";
 import { LeadForm } from "@/components/LeadForm";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <PainMoment />
       <BentoProduct />
+      <GlobalComparison />
       <OperationalProof />
       <MomentumTicker />
       <ESGSection />

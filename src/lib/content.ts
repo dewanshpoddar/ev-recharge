@@ -147,6 +147,37 @@ export const FORM_FLEET_SIZES = [
   { value: "gt500", label: "500+ vehicles" },
 ] as const;
 
+export const COMPARISON_DATA = {
+  title: "The Shift in Fleet Energy",
+  subtitle: "Why global fleets are choosing mobile over static infrastructure.",
+  rows: [
+    {
+      feature: "Deployment Time",
+      grid: "6–12 Months (Transformer/Permits)",
+      evr: "5 Days (Arrival to Full Uptime)",
+      highlight: true,
+    },
+    {
+      feature: "Initial Investment",
+      grid: "High CapEx (Construction + Hardware)",
+      evr: "Zero Upfront (Energy-as-a-Service)",
+      highlight: true,
+    },
+    {
+      feature: "Grid Dependency",
+      grid: "100% Tethered to Site Capacity",
+      evr: "Grid-Independent Micro-Loops",
+      highlight: false,
+    },
+    {
+      feature: "Operational Model",
+      grid: "Self-Managed & Labor Intensive",
+      evr: "Turnkey Managed Charging",
+      highlight: false,
+    },
+  ],
+};
+
 export const FORM_WEBHOOK_URL = "/api/lead";
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
