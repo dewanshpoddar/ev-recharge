@@ -24,15 +24,6 @@ test.describe('EVR Website E2E', () => {
     
     await page.getByLabel('Work Email').fill('test@evrecharge.org');
     await page.getByLabel('City / Region').fill('Test City');
-    
-    // Mock the Google Apps Script webhook to prevent spamming it during automated tests
-    await page.route('https://script.google.com/macros/s/AKfycbxni7t-xMJE4UGHoMxAbaEnHs_GSrFG0KxbCZhFVYVCHqQnNyFpIvmE0qo26j6LRQb_/exec', async route => {
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({ result: 'success' })
-      });
-    });
 
     // Submit again with valid data
     await page.getByRole('button', { name: /Build my fleet's uptime plan/i }).click();

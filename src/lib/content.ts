@@ -147,8 +147,7 @@ export const FORM_FLEET_SIZES = [
   { value: "gt500", label: "500+ vehicles" },
 ] as const;
 
-export const FORM_WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbxni7t-xMJE4UGHoMxAbaEnHs_GSrFG0KxbCZhFVYVCHqQnNyFpIvmE0qo26j6LRQb_/exec";
+export const FORM_WEBHOOK_URL = "/api/lead";
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 

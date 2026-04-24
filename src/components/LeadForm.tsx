@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google';
 import { Send, CheckCircle2, ChevronLeft, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FORM_PERSONAS, FORM_FLEET_SIZES, FORM_WEBHOOK_URL } from "@/lib/content";
@@ -36,22 +37,25 @@ export const LeadForm = () => {
 
       const response = await fetch(FORM_WEBHOOK_URL, {
         method: "POST",
-        body: new URLSearchParams(data as Record<string, string>),
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
         signal: controller.signal
       });
       
       clearTimeout(timeoutId);
       
-      // GAS usually returns 200 even on error, we should verify response text
-      // But if it's a cross-origin 'no-cors' request, we might not be able to read it.
-      // If it's standard cors, we can read json. Assuming standard GAS macro setup:
       const result = await response.json().catch(() => null);
       
-      if (response.ok && (!result || result.result === "success")) {
+      if (response.ok && result?.result === "success") {
         setIsSuccess(true);
+        sendGAEvent('event', 'generate_lead', {
+          currency: 'INR',
+          value: 100,
+          fleet_size: data.fleet_size as string,
+          persona: data.persona_type as string
+        });
       } else {
-        throw new Error("Server returned an error");
+        throw new Error(result?.error || "Server returned an error");
       }
     } catch (error) {
       console.error("Submission failed", error);
